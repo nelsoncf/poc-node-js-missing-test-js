@@ -8,9 +8,9 @@ function comprarListas(pastaSrc, pastaTest){
 
     pastaSrc.forEach(file => {
 
-        file += ".test";
-
-        if(!pastaTest.includes(file)){
+        let curr = file
+    
+        if(!pastaTest.includes(curr += ".test")){
             controllersSemTeste.push(file);
         }
 

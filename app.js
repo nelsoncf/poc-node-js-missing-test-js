@@ -10,35 +10,19 @@ const testFolder = './tests/';
 var src = buscaNaPasta.lerPastaSrc(srcFolder);
 var tests = buscaNaPasta.lerPastaTest(testFolder);
 var semTestes = comparaArquivos.comprarListas(src, tests);
-var html = montaBody(semTestes);
+var body = semTestes.map((sem) => "<li>"+sem+"</li>")
+
+const writeHTML = () => JSON.stringify(body)
 
 const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end(html);
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  
+  res.end(writeHTML());
 
 });
 
 server.listen(port, hostname, () => {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
-
-function montaBody(semTestes) {
-  var header = '';
-
-  // TO-DO Gerar html
-  // var body = semTestes.forEach(item => 
-  //    "<li>"+item+"</li>"
-  // );
-
-  // var body = [];
-
-  // for (let i = 0; i < semTestes.length; i++) {
-  //   const element = semTestes[i];
-    
-  // }
-
-  return '<!DOCTYPE html>'+ '<html><head>' + header + '</head><body><ul>' + body + '+</ul></body></html>';
-};
 
 
