@@ -1,0 +1,29 @@
+{
+  "name": "poc-node-js-missing-test",
+  "version": "1.0.0",
+  "description": "POC Busca de Controllers sem teste",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nelsoncf/poc-node-js-missing-test-js.git"
+  },
+  "keywords": [
+    "Node",
+    "fsRead"
+  ],
+  "author": "Nelson Campos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nelsoncf/poc-node-js-missing-test-js/issues"
+  },
+  "homepage": "https://github.com/nelsoncf/poc-node-js-missing-test-js#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}
