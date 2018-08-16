@@ -1,5 +1,42 @@
 const fs = require('fs');
 const path = require('path');
+var readdirp = require('readdirp');
+
+
+var settings = {
+    root: './src/',
+    entryType: 'all'
+};
+
+var allFilePaths = [];
+
+readdirp(settings)
+    .on('data', function (entry) {
+        // execute everytime a file is found in the providen directory
+        if(entry.name.indexOf(".js")>-1){
+            allFilePaths.push(
+                path.parse(entry.name).name 
+            );
+        }
+        // Store the fullPath of the file/directory in our custom array 
+        // allFilePaths.push(
+        //     entry.name 
+        // );
+    })
+    .on('warn', function(warn){
+        console.log("Warn: ", warn);
+    })
+    .on('error', function(err){
+        console.log("Error: ", err);
+    })
+    .on('end', function(){
+        console.log(allFilePaths);
+        // ["c:/file.txt","c:/other-file.txt" ...]
+    })
+;
+
+console.log("TODOS OS ARQUIVOS COM SUB FOLDER", allFilePaths)
+
 
 /**
  * @memberof buscarArquivosModule
@@ -7,34 +44,24 @@ const path = require('path');
  */
 function lerPastaSrc(pasta) {
 
-    var listaDeArquivos = [];
-
-    // Assincrono
-    // fs.readdir(pasta, (err, files) => {
-    //     files.forEach(file => {
-    //       console.log(file);
-    //       listaDeArquivos.push(file)
-    //     });
-    // })
-
-    fs.readdirSync(pasta).forEach(file => {
-        console.log(file);
-        listaDeArquivos.push(path.parse(file).name)
-    })
+    let listaDeArquivos = fs.readdirSync(pasta).filter(function(file) {
+        if(file.indexOf(".js")>-1) return path.parse(file).name;
+    })  
     
-    return listaDeArquivos
+    let listaFinalArquivos = listaDeArquivos.map(item => path.parse(item).name)
+    
+    return listaFinalArquivos
 }
 
 function lerPastaTest(pasta) {
 
-    var listaDeArquivosTest = [];
-
-    fs.readdirSync(pasta).forEach(file => {
-        console.log(file);
-        listaDeArquivosTest.push(path.parse(file).name)
+    let listaDeTest = fs.readdirSync(pasta).filter(function(file) {
+        if(file.indexOf(".js")>-1) return path.parse(file).name;
     })
+
+    let listaFinalTest = listaDeTest.map(item => path.parse(item).name)
     
-    return listaDeArquivosTest
+    return listaFinalTest
 }
 
 

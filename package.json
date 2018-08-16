@@ -25,5 +25,8 @@
   "homepage": "https://github.com/nelsoncf/poc-node-js-missing-test-js#readme",
   "devDependencies": {
     "nodemon": "^1.18.3"
+  },
+  "dependencies": {
+    "readdirp": "^2.1.0"
   }
 }
