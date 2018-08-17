@@ -4,7 +4,9 @@ module.exports = {
 
 function comprarListas(pastaSrc, pastaTest){
 
-    var controllersSemTeste = [];
+    console.log("pasta entrada", pastaSrc, "pasta saida", pastaTest)
+
+    var controllersSemTeste = []
 
     pastaSrc.forEach(file => {
 
