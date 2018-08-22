@@ -7,10 +7,7 @@ const port = 3001;
 const srcFolder = './src/';
 const testFolder = './tests/';
 
-var src = buscaNaPasta.lerPasta(srcFolder, 'both', '*.js');
-var tests = buscaNaPasta.lerPasta(testFolder, 'both', '*.js');
-
-var semTestes = comparaArquivos.comprarListas(src, tests);
+var semTestes = comparaArquivos.comprarListas(srcFolder, testFolder);
 
 
 var body = semTestes.map((sem) => "<li>"+sem+"</li>")

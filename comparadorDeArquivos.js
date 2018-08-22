@@ -1,18 +1,23 @@
+const buscaNaPasta = require('./busca-arquivos')
+
 module.exports = {
     comprarListas: comprarListas
 }
 
-function comprarListas(pastaSrc, pastaTest){
+async function comprarListas(srcFolder, testFolder){
 
-    console.log("pasta entrada", pastaSrc, "pasta saida", pastaTest)
+    var src = await buscaNaPasta.lerPasta(srcFolder, 'both', '*.js');
+    var tests = await buscaNaPasta.lerPasta(testFolder, 'both', '*.js');
+
+    console.log("pasta entrada", src, "pasta saida", tests)
 
     var controllersSemTeste = []
 
-    pastaSrc.forEach(file => {
+    src.forEach(file => {
 
         let curr = file
     
-        if(!pastaTest.includes(curr += ".test")){
+        if(!tests.includes(curr += ".test")){
             controllersSemTeste.push(file);
         }
 
